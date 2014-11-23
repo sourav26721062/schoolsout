@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    body{
+    font-family: 'open_sanslight';
+    }
+    </style>
+    <title>Ftap.com</title>
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <!-- Custom CSS -->
+    <link href="css/custom2.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrapValidator.css"/>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+    <style>
+    .glyphicon-exclamation-sign:before{
+    display:none;
+    }
+    .glyphicon-ok:before{
+    display:none;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    
+    <!-- Page Content -->
+    <div id="headerwrap" id="home" name="home">
+      <!-- <header class="clearfix">
+        <img class="logo-css" src="img/logo.png" alt="">
+        
+      </header> -->
+      <div class="text-center">
+        <!--<img class="vid-icon" src="img/video-icon.png" alt="">-->
+        <img src="img/logo.png" class="snftaplogo" alt="Circular Image">
+        <h2 style="font-size: 35px !important">Sign Up</h2>
+        <p class="singup-p1">Start using ftap in minutes! Let's begin <br>by creating your account.</p>
+        <br>
+        
+        <div class="container">
+          <form id="signupForm" method="post" class="form-horizontal" action="target.php">
+            
+            <div class="form-group">
+              
+              <div class="col-xs-12">
+                <input type="text" class="form-control" id="name" name="name"
+                placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <input type="text" class="form-control" id="email" name="email"
+                placeholder="Email Address">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <input type="password" class="form-control" id="password" name="password"
+                placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
+                placeholder="Re-Type Password">
+              </div>
+            </div>
+            <div></div>
+            <div class="form-group ">
+              <div class="col-xs-12">
+                <div>
+                  <p class="singup-p">
+                  By using this app, you agree to FTAP’s
+                  
+                  </p>
+                  <p class="singup-p1">
+                  Terms of Use and Privacy Policy
+                  
+                  </p>
+                </div>
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <div class="col-lg-12 submitbtn">
+                <button type="submit" class="btn btn-primary btn-lg ">Sign Up</button>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!-- <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+      
+      <div class="container">
+        <p class="p-text";><p class="p-text";>Getting Started ?<strong> Sign Up</strong></p>
+        </p>
+      </div>
+      
+      
+      <!-- /.navbar-collapse -->
+      
+      <!-- /.container -->
+      <!--  </nav>-->
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.0 -->
+   <!-- <script src="js/jquery-1.11.0.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+   <!-- <script src="js/bootstrap.min.js"></script>-->
+   <script type="text/javascript">
+$(document).ready(function() {
+    $('#signupForm').bootstrapValidator({
+       live: 'disabled',
+         message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-exclamation-sign',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The full name is required and cannot be empty'
+                    }
+                }
+            },
+
+ email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email not found'
+
+                        },
+                        emailAddress: {
+                            message: 'The input is not a valid email address'
+
+                        }
+                    }
+                },
+
+
+            password: {
+                enabled: false,
+                validators: {
+                    notEmpty: {
+                      message: 'The password and confirm password should match'
+                       /*message: 'The password is required and cannot be empty'*/
+                    },
+                    /*identical: {
+                        field: 'confirm_password',
+                        message: 'The password and confirm password should match'
+                    }*/
+                }
+            },
+            confirm_password: {
+                enabled: false,
+                validators: {
+                    notEmpty: {
+                        message: 'The confirm password is required and cannot be empty'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: 'Your password does not match, please re-enter'
+                    }
+                }
+            }
+        }
+    });
+
+    // Enable the password/confirm password validators if the password is not empty
+    $('#signupForm').find('[name="password"]').on('keyup', function() {
+        var isEmpty = $(this).val() == '';
+        $('#signupForm').bootstrapValidator('enableFieldValidators', 'password', !isEmpty)
+                        .bootstrapValidator('enableFieldValidators', 'confirm_password', !isEmpty);
+        if ($(this).val().length == 1) {
+          //  $('#signupForm').bootstrapValidator('validateField', 'password')
+                     //       .bootstrapValidator('validateField', 'confirm_password');
+        }
+    });
+});
+</script> 
+
+</body>
+
+</html>
